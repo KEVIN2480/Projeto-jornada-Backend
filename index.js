@@ -5,13 +5,27 @@ app.get('/', function (req, res) {
   res.send('Hello World')
 })
 
-app.get("/oi", function (req,res){
-    res.send('Olá,mundo!')
+// Desafio: criar endpoint /oi que exibe "Olá, mundo!"
+app.get('/oi', function (req, res) {
+  res.send('Olá, mundo!')
 })
-app.listen(3000)
 
+// Lista de Personagens
+const lista = ['Rick Sanchez', 'Morty Smith', 'Summer Smith']
 
-const lista = ['Rick Sanches', 'Morty Smith','Summer Smith']
-app.get("/item", function (req,res){
+// Read All - [GET] /item
+app.get('/item', function (req, res) {
+  // Pegamos a lista e enviamos como resposta HTTP
   res.send(lista)
 })
+
+// Sinalizamos para o Express que vamos usar JSON no Body
+app.use(express.json())
+
+// Create - [POST] /item
+app.post('/item', function (req, res) {
+  console.log(req.body)
+  res.send('Create')
+})
+
+app.listen(3000)
